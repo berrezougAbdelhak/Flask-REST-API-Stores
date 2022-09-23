@@ -3,7 +3,7 @@ from flask import Flask,jsonify
 app = Flask(__name__)
 
 stores = [{"name": "My Wonderful Store", "items": [
-    {"name": "MyItem", "price": 12.99}]}]
+    {"name": "MyItem", "Price": 12.99}]}]
 # POST /store data: {name:}
 
 
@@ -12,7 +12,6 @@ def create_store():
     pass
 
 # GET /store/<string: name>
-
 
 @app.route("/store/<string:name>")
 def get_store(name):
