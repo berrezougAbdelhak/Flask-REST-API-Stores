@@ -37,9 +37,16 @@ def get_stores():
 
 
 @app.route("/store/<string:name>/item", methods=["POST"])
-def create_item_in_store():
-    pass
-
+def create_item_in_store(name):
+    new_item=request.get_json()
+    for store in stores:
+        if store["name"]==name:
+            print(new_item)
+            store["items"].append({"name":new_item["name"],"price":new_item["price"]})
+            return jsonify(store)
+    
+    return jsonify({"message":"store not found"})
+    
 # GET /store/<string: name>/item
 
 
