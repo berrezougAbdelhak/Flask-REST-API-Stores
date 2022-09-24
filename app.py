@@ -1,12 +1,15 @@
-import json
-from flask import Flask,jsonify,request
+from flask import Flask,jsonify,request,render_template
 
 app = Flask(__name__)
 
 stores = [{"name": "My Wonderful Store", "items": [
     {"name": "MyItem", "Price": 12.99}]}]
-# POST /store data: {name:}
 
+@app.route("/")
+def home():
+    return render_template("index.html")
+
+# POST /store data: {name:}
 
 @app.route("/store", methods=["POST"])
 def create_store():
