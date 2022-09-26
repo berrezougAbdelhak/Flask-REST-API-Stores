@@ -27,6 +27,12 @@ class Item(Resource):
         item={"name":name,"price":data["price"]}
         items.append(item)
         return item,201
+    
+    def delete(self,name):
+        global items
+        items=list(filter(lambda x:x["name"]!=name,items))
+        return {"Message": "Item deleted"}
+ 
 class ItemList(Resource):
     def get(self):
         return {"items":items}
@@ -34,5 +40,6 @@ class ItemList(Resource):
 api.add_resource(Item,"/item/<string:name>") 
 
 api.add_resource(ItemList,"/items")
+
 
 app.run()
